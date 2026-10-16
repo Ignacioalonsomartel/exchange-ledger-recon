@@ -1,0 +1,56 @@
+# Reconciliation settings for recon.py
+#
+# Everything an operations reviewer might reasonably need to tune lives here,
+# so nobody has to edit Python to change a threshold. Changes to this file
+# should be reviewed like code: they change what gets flagged.
+
+# Exchanges report timestamps in UTC; our ledger books in local dates.
+# Exchange timestamps are converted to this timezone before dates are compared.
+reporting_timezone: America/Puerto_Rico
+
+tolerances:
+  # Largest quantity difference (in units of the asset) still treated as equal.
+  # 0.00000001 is one satoshi for BTC - effectively "must match exactly".
+  quantity: 0.00000001
+
+  # A paired transaction whose dates differ by this many calendar days or fewer
+  # (and that has no other difference) is a TIMING break.
+  date_window_days: 2
+
+# Standing items: known, documented, recurring differences.
+#
+# Each rule has a fixed "type" that recon.py knows how to evaluate, plus
+# parameters. If a break matches exactly one rule it is classified STANDING
+# and tagged with that rule's id. If it matches two or more rules, it goes to
+# NEEDS REVIEW - we do not pick one.
+standing_rules:
+  - id: STND-001
+    name: Dust
+    description: >-
+      Exchange-side movements worth less than $1.00 (tiny deposits,
+      airdrop remnants) that are not booked individually in the ledger.
+    owner: Crypto Ops - Fund Accounting
+    type: unmatched_below_usd     # an unpaired row whose |usd_value| is under max_usd
+    side: exchange
+    max_usd: 1.00
+
+  - id: STND-002
+    name: Staking rewards
+    description: >-
+      The exchange credits rewards daily; the ledger books one
+      staking accrual at month-end, so daily rewards have no ledger line until
+      the month closes.
+    owner: Crypto Ops - Staking
+    type: unmatched_txn_type      # an unpaired row whose txn_type is in the list
+    side: exchange
+    txn_types: [STAKING_REWARD]
+
+  - id: STND-003
+    name: Fee rounding
+    description: >-
+      The exchange reports fees to 8 decimals; the ledger stores
+      fees to 6 decimals, leaving a sub-rounding difference.
+    owner: Crypto Ops - Fund Accounting
+    type: paired_quantity_rounding  # a paired row whose only difference is a small quantity gap
+    txn_types: [FEE]
+    max_quantity_diff: 0.000005
