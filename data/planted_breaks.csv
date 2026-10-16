@@ -1,0 +1,35 @@
+txn_ref,expected_category,expected_reason_code,expected_rule_id,description
+EX-389282,TIMING,DATE_WITHIN_WINDOW,CORE-TIMING,"BTC deposit on exchange 10/03, booked in ledger 10/04 (1 day)"
+EX-989227,TIMING,DATE_WITHIN_WINDOW,CORE-TIMING,"ETH withdrawal on exchange 10/09, booked 10/11 (2 days: edge of the window)"
+EX-196126,TIMING,DATE_WITHIN_WINDOW,CORE-TIMING,"SOL sell on exchange 10/13, booked 10/14 (1 day)"
+EX-772875,STANDING,STANDING_RULE_MATCH,STND-001,USDC dust deposit of $0.42
+EX-153035,STANDING,STANDING_RULE_MATCH,STND-001,SOL dust deposit of 0.003 SOL (under $1)
+EX-315173,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-01, ledger accrues at month-end"
+EX-714867,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-02, ledger accrues at month-end"
+EX-911984,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-03, ledger accrues at month-end"
+EX-390743,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-04, ledger accrues at month-end"
+EX-282973,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-05, ledger accrues at month-end"
+EX-115582,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-06, ledger accrues at month-end"
+EX-439498,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-07, ledger accrues at month-end"
+EX-877747,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-08, ledger accrues at month-end"
+EX-599380,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-09, ledger accrues at month-end"
+EX-214351,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-10, ledger accrues at month-end"
+EX-145471,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-11, ledger accrues at month-end"
+EX-646781,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-12, ledger accrues at month-end"
+EX-163780,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-13, ledger accrues at month-end"
+EX-213206,STANDING,STANDING_RULE_MATCH,STND-002,"Daily SOL staking reward 2026-10-14, ledger accrues at month-end"
+EX-565108,STANDING,STANDING_RULE_MATCH,STND-003,"BTC fee -0.00012345 on exchange, -0.000123 in ledger (rounding)"
+EX-437758,STANDING,STANDING_RULE_MATCH,STND-003,"BTC fee -0.00048761 on exchange, -0.000488 in ledger (rounding)"
+EX-232321,STANDING,STANDING_RULE_MATCH,STND-003,"BTC fee -0.00031297 on exchange, -0.000313 in ledger (rounding)"
+EX-713799,NEEDS_REVIEW,MISSING_IN_LEDGER,CORE-MISSING,"USDC 25,000 withdrawal on exchange, never booked in ledger"
+EX-499407,NEEDS_REVIEW,MISSING_IN_LEDGER,CORE-MISSING,"ETH 3.5 buy on exchange, never booked in ledger"
+EX-575755,NEEDS_REVIEW,MISSING_ON_EXCHANGE,CORE-MISSING,Ledger shows a 0.8 BTC deposit the exchange has no record of
+EX-630108,NEEDS_REVIEW,QTY_MISMATCH,CORE-QTY,"SOL buy: exchange 120.5, ledger 125.0"
+EX-931621,NEEDS_REVIEW,QTY_MISMATCH,CORE-QTY,"USDC deposit of +10,000 booked in ledger as -10,000 (sign flipped)"
+EX-786516,NEEDS_REVIEW,ASSET_MISMATCH,CORE-ASSET,"USDC 50,000 deposit booked in ledger as USDT"
+EX-678116,NEEDS_REVIEW,DUPLICATE_LEDGER_REF,CORE-DUPLICATE,ETH 8.0 sell booked twice in ledger
+EX-550961,NEEDS_REVIEW,DUPLICATE_EXCHANGE_ID,CORE-DUPLICATE,BTC 0.4 buy appears twice in the exchange export (same ID)
+EX-533914,NEEDS_REVIEW,DATE_OUTSIDE_WINDOW,CORE-DATE,"BTC sell on exchange 10/02, booked 10/08 (6 days, outside 2-day window)"
+EX-575528,NEEDS_REVIEW,MULTIPLE_DIFFERENCES,CORE-MULTI,"ETH deposit: exchange 20.0 on 10/05, ledger 2.0 on 10/06 (date AND quantity)"
+EX-865054,NEEDS_REVIEW,AMBIGUOUS_STANDING_RULE,CORE-AMBIGUOUS,Tiny ETH staking reward: matches BOTH dust (STND-001) and staking (STND-002)
+EX-427704,NEEDS_REVIEW,QTY_MISMATCH,CORE-QTY,BTC fee off by 0.0001: too large to be rounding (STND-003 must NOT apply)
