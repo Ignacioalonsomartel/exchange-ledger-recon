@@ -1,0 +1,17 @@
+# Python environment and caches
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Dated daily runs (see RUNBOOK.md). The sample run in output/ itself is committed.
+output/*/
+
+# Editors and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
